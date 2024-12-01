@@ -1,6 +1,6 @@
 # Ashley's AoC 2024
 
-Written in Deno using TS with a mostly functional style. Note that the input will be different for you and my solutions won't work for you!
+Written in Deno using TS with a mostly functional style. Note that the input will be different for you -- replace my `input.txt`'s contents with yours to get the correct answers.
 
 ## Usage
 
