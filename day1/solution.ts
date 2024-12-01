@@ -6,7 +6,7 @@ type Counter = Record<number, number>; // maps a number to its count
 const readData = (text: string): Lists => {
   const lines = text.split("\r\n");
 
-  const [left, right] = lines.reduce(
+  return lines.reduce(
     (accumulator: Lists, current) => {
       const [left, right] = current.split("   ");
       return [
@@ -16,8 +16,6 @@ const readData = (text: string): Lists => {
     },
     [[], []]
   );
-
-  return [left, right];
 };
 
 export const solveFirstStar = (lists: Lists): number => {
