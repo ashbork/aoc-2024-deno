@@ -1,19 +1,20 @@
 import { join } from "@std/path";
 
-export type Lists = [number[], number[]]; // left and right tuple
+export type Lists = [number[], number[]]; // left and right list
+type Counter = Record<number, number>; // maps a number to its count
 
 const readData = (text: string): Lists => {
   const lines = text.split("\r\n");
 
   const [left, right] = lines.reduce(
-    (accumulator: [number[], number[]], current) => {
+    (accumulator: Lists, current) => {
       const [left, right] = current.split("   ");
       return [
         [...accumulator[0], parseInt(left)],
         [...accumulator[1], parseInt(right)],
-      ] as [number[], number[]];
+      ];
     },
-    [[], []] as [number[], number[]]
+    [[], []]
   );
 
   return [left, right];
@@ -31,7 +32,7 @@ export const solveFirstStar = (lists: Lists): number => {
 
 export const solveSecondStar = (lists: Lists): number => {
   const [left, right] = lists;
-  const counter: Record<number, number> = {};
+  const counter: Counter = {};
 
   return left
     .map((leftValue) => {
