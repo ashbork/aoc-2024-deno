@@ -11,6 +11,10 @@ In previous years, I've been bouncing off of AoC; I'd like to try to complete it
 - [ ] Do at least half of the puzzles on 2*
 - [ ] Do all puzzles on 2*
 
+## Journal
+
+Day 2: That 2* was awful, I had to look for some hints -- worst part is I felt like I was close to getting a much better solution. Makes me scared for the future.
+
 ## Usage
 
 ### Running specific day
