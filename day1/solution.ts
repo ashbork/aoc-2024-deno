@@ -1,12 +1,11 @@
 import { join } from "@std/path";
+import { splitLines } from "../common/split.ts";
 
 export type Lists = [number[], number[]]; // left and right list
 type Counter = Record<number, number>; // maps a number to its count
 
 const readData = (text: string): Lists => {
-  const lines = text.split("\r\n");
-
-  return lines.reduce(
+  return splitLines(text).reduce(
     (accumulator: Lists, current) => {
       const [left, right] = current.split("   ");
       return [
