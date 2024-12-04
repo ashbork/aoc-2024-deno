@@ -10,7 +10,7 @@ Deno.test({
         "",
         "mul(1,1)",
         "mul(mul(3,4))",
-      ] as const,
+      ],
       [161, 0, 1, 12],
       mullOver
     );
@@ -30,7 +30,7 @@ Deno.test({
         "don't()mul(mul(3,4))",
         "do()don't()mul(mul(3,4))",
         "do()do()do()do()do()mul(1,3)", // baby shark
-      ] as const,
+      ],
       [48, 0, 1, 1, 12, 0, 0, 3],
       mullOverWithDo
     );
