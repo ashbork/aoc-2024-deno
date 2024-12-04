@@ -21,7 +21,9 @@ export const parameterize = <Input extends readonly unknown[], Value>(
     const actual = func(inputValue);
     assert(
       actual === output[idx],
-      `Parameterize failed on run ${idx} - expected ${output[idx]}, got ${actual}`
+      `Parameterize failed on run ${idx} - called ${func.name}(${
+        typeof inputValue === "string" ? `"${inputValue}"` : inputValue
+      }), expected ${output[idx]}, got ${actual}`
     );
   });
 };
