@@ -1,5 +1,6 @@
 import { join } from "@std/path/join";
 import { splitLines } from "../common/split.ts";
+import { runDay } from "../common/runDay.ts";
 
 const searchXmas = (lines: string[]): number => {
   return lines
@@ -113,10 +114,4 @@ export const xshapeSearch = (input: string) => {
   return found;
 };
 
-if (import.meta.main) {
-  const path = join("day4", "input.txt");
-  const input = Deno.readTextFileSync(path);
-
-  console.log(wordSearch(input));
-  console.log(xshapeSearch(input));
-}
+export const day4 = () => runDay(4, wordSearch, xshapeSearch);

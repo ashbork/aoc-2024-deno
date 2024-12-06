@@ -1,5 +1,5 @@
-import { join } from "@std/path";
 import { splitLines } from "../common/split.ts";
+import { runDay } from "../common/runDay.ts";
 
 export type Lists = [number[], number[]]; // left and right list
 type Counter = Record<number, number>; // maps a number to its count
@@ -17,7 +17,8 @@ const readData = (text: string): Lists => {
   );
 };
 
-export const solveFirstStar = (lists: Lists): number => {
+export const solveFirstStar = (input: string): number => {
+  const lists = readData(input);
   const [left, right] = lists;
 
   const sortedRight = right.toSorted();
@@ -27,7 +28,8 @@ export const solveFirstStar = (lists: Lists): number => {
     .reduce((acc, current) => acc + current);
 };
 
-export const solveSecondStar = (lists: Lists): number => {
+export const solveSecondStar = (input: string): number => {
+  const lists = readData(input);
   const [left, right] = lists;
   const counter: Counter = {};
 
@@ -43,11 +45,4 @@ export const solveSecondStar = (lists: Lists): number => {
     .reduce((acc, current) => acc + current);
 };
 
-if (import.meta.main) {
-  const path = join("day1", "input.txt");
-  const input = Deno.readTextFileSync(path);
-  const lists = readData(input);
-
-  console.log(solveFirstStar(lists));
-  console.log(solveSecondStar(lists));
-}
+export const day1 = () => runDay(1, solveFirstStar, solveSecondStar);

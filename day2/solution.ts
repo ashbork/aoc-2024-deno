@@ -1,19 +1,22 @@
 import { join } from "@std/path/join";
 import { pairwise } from "../common/pairwise.ts";
 import { splitLines } from "../common/split.ts";
+import { runDay } from "../common/runDay.ts";
 
-type Input = Report[];
+type Reports = Report[];
 type Report = number[];
 
-const readData = (text: string): Input =>
+const readData = (text: string): Reports =>
   splitLines(text).map((line) => line.split(" ").map((el) => parseInt(el)));
 
-export const solveFirstStar = (input: Input) => {
-  return input.filter(isReportSafe).length;
+export const solveFirstStar = (input: string) => {
+  const reports = readData(input);
+  return reports.filter(isReportSafe).length;
 };
 
-export const solveSecondStar = (input: Input) => {
-  return input.filter(isReportSafeDampened).length;
+export const solveSecondStar = (input: string) => {
+  const reports = readData(input);
+  return reports.filter(isReportSafeDampened).length;
 };
 
 const getSteps = (report: Report): number[] =>
@@ -94,11 +97,4 @@ export const isReportSafeDampened = (report: Report): boolean => {
 //   return true;
 // };
 
-if (import.meta.main) {
-  const path = join("day2", "input.txt");
-  const input = Deno.readTextFileSync(path);
-  const reports = readData(input);
-
-  console.log(solveFirstStar(reports));
-  console.log(solveSecondStar(reports));
-}
+export const day2 = () => runDay(2, solveFirstStar, solveSecondStar);

@@ -1,4 +1,5 @@
 import { join } from "@std/path/join";
+import { runDay } from "../common/runDay.ts";
 
 export const mullOver = (input: string): number => {
   // A valid mul instruction is:
@@ -56,10 +57,4 @@ export const mullOverWithDo = (input: string): number => {
     .reduce((acc, curr) => acc + curr, 0);
 };
 
-if (import.meta.main) {
-  const path = join("day3", "input.txt");
-  const input = Deno.readTextFileSync(path);
-
-  console.log(mullOver(input));
-  console.log(mullOverWithDo(input));
-}
+export const day3 = () => runDay(3, mullOver, mullOverWithDo);
