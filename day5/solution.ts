@@ -1,4 +1,5 @@
 import { splitLines } from "../common/split.ts";
+import { runDay } from "../common/runDay.ts";
 
 type Instruction = [number, number];
 
@@ -19,6 +20,34 @@ const getRelevantInstructions = (
   );
 };
 
+const satisfiesInstructions = (
+  update: number[],
+  instructions: Instruction[]
+): boolean => {
+  if (!instructions) return true;
+
+  const findBeforeAndAfter = (
+    before: number,
+    after: number
+  ): [number, number] => {
+    return [
+      update.findIndex((val) => val === before),
+      update.findIndex((val) => val === after),
+    ];
+  };
+
+  return instructions
+    .map((instruction) => {
+      const [before, after] = findBeforeAndAfter(...instruction);
+
+      if (before < after) {
+        return true;
+      }
+      return false;
+    })
+    .every(Boolean);
+};
+
 export const processUpdates = (input: string): number => {
   const lines = splitLines(input);
 
@@ -33,15 +62,18 @@ export const processUpdates = (input: string): number => {
   );
 
   const updates = updatesSection.map((val) =>
-    val.split(",").map((v) => parseInt(v))
+    val
+      .trim()
+      .split(",")
+      .map((v) => parseInt(v))
   );
 
-  console.log(instructions);
-  console.log(updates);
-
-  // console.log(getCenterMember(updates[0]));
-
-  console.log(getRelevantInstructions(updates[0], instructions));
-
-  return 0;
+  return updates
+    .filter((val) =>
+      satisfiesInstructions(val, getRelevantInstructions(val, instructions))
+    )
+    .map(getCenterMember)
+    .reduce((acc, curr) => acc + curr, 0);
 };
+
+export const day5 = () => runDay(5, processUpdates);
