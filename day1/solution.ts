@@ -8,6 +8,8 @@ const readData = (text: string): Lists => {
   return splitLines(text).reduce(
     (accumulator: Lists, current) => {
       const [left, right] = current.split("   ");
+      console.log(left, right);
+
       return [
         [...accumulator[0], parseInt(left)],
         [...accumulator[1], parseInt(right)],
