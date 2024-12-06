@@ -20,7 +20,9 @@ export const runDay = async (
   try {
     input = await Deno.readTextFile(path);
   } catch {
-    return rejectWithError(`❌ Failed to read file: ${path}`);
+    return rejectWithError(
+      `❌ Failed to read file: ${path}. You might be missing input.txt - it's not in the Git repo per the author's wishes.`
+    );
   }
 
   try {
