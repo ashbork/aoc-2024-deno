@@ -1,4 +1,3 @@
-import { join } from "@std/path/join";
 import { splitLines } from "../common/split.ts";
 import { runDay } from "../common/runDay.ts";
 
